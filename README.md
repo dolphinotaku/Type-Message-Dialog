@@ -27,9 +27,10 @@ I experienced several similar tools, Typed.js is the most close to my needs.
   - Auto
     - Auto show next line until End
 - Enrich message format, size/color
+- Expand to second browser tab, display a more detailed control panel / monitor panel, see what is the next? Jump to a specific line, allowed to move this web page to the monitor 2 to hide in the recording on monitor 1. Two pages communicate through by SOCKET.IO 
 
 ## Dependency
-- jQuery 3.3.1 in used
+- jQuery 3.3.1 (in used, may work in lower version)
 - Typed.js v2.0.9
 
 ## Function
