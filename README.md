@@ -52,4 +52,5 @@ Please do not hesitate to perform your professional on PULL requests when you fo
 
 ## License
 This project is licensed under the MIT license. [View license file](https://github.com/keithbox/AngularJS-CRUD-PHP/blob/master/LICENSE)
+
 Enjoy and have fun =]
