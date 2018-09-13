@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Typing text like subtitle/caption</title>
+	<script src="../third-party/jquery/jquery-3.3.1.min.js"></script>
+	<script src="../third-party/typed.js-2.0.9/lib/typed.js"></script>
+	<script src="../js/demo.js"></script>
+	<style>
+		#container {
+			text-align: center;
+			padding: 10px;
+			border-color: #9E9E9E;
+			height: 50px;
+			border-style: dashed;
+			border-width: 2px;
+			position: relative;
+		}
+	</style>
+  </head>
+<body>
+<div id="container">
+	<div style="position: absolute; top:0px; right: 0px; margin-right:10px; z-index:1;">
+		<button type="button" id="play">&#9654;</button>
+		<button type="button" id="pause">&#10073; &#10073;</button>
+	</div>
+	<span id="app"></span>
+</div>
+<br>
+<div>
+	<button type="click" id="isBulk" class="config">Bulk words (<span class="value">default as false</span>)</button>
+	<button type="click" id="isLongPressSkip" class="config">Long press to skip (<span class="value">default as true</span>)</button>
+</div>
+
+</body>
+</html>
