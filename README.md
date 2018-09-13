@@ -2,7 +2,7 @@
 simple and quick solution to present the caption/subtitle for recording a presentation
 
 ## Demo
-Demo(https://keithbox.github.io/Type-Message-Dialog/test/typedjs.html)
+[Demo](https://keithbox.github.io/Type-Message-Dialog/test/typedjs.html)
 
 ## Motivation
 Sometime I need to present the PowerPoint slides and demonstrate the applications. Typing the speech on a text editor is a quick and simple method if I don't want to speak. To be honest, English is not my native language, therefore, I will prepare the speech in a word document, print in hard copy, then follow and type on the show. It was very complicated, low efficiency, easy to having typo and easy to overlook.
