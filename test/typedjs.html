@@ -2,28 +2,24 @@
 <html>
   <head>
 	<title>Typing text like subtitle/caption</title>
+    <link rel="stylesheet" type="text/css" href="../css/demo.css">
 	<script src="../third-party/jQuery/jquery-3.3.1.min.js"></script>
 	<script src="../third-party/typed.js-2.0.9/lib/typed.js"></script>
 	<script src="../js/demo.js"></script>
 	<style>
-		#container {
-			text-align: center;
-			padding: 10px;
-			border-color: #9E9E9E;
-			height: 50px;
-			border-style: dashed;
-			border-width: 2px;
-			position: relative;
-		}
 	</style>
   </head>
 <body>
 <div id="container">
-	<div style="position: absolute; top:0px; right: 0px; margin-right:10px; z-index:1;">
+	<div id="toolbar">
 		<button type="button" id="play">&#9654;</button>
 		<button type="button" id="pause">&#10073; &#10073;</button>
+		<button type="button" id="decreaseSize">A<sup>-</sup></button> <span id="fontsize"></span>
+		<button type="button" id="increaseSize">A<sup>+</sup></button>
 	</div>
-	<span id="app"></span>
+	<div id="clickableArea">
+		<span id="app"></span>
+	</div>
 </div>
 <br>
 <div>

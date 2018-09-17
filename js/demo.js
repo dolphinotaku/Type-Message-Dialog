@@ -5,12 +5,16 @@ $(document).ready(function() {
 	var typingText = null;
 	var typedObj = null;
 	
+	var typingTextContainerID = "#app"; // for jQuery(...)
+	var typingTextContainer = $(typingTextContainerID);
+		
 	var isTypingString = false;
 	
     // holds the start time
     var clickedTime;
 	
 	var config = {
+		fontSizeEm: 1, // em unit
 		longpress: 100, // how many milliseconds is a long press?
 		isBulk: false,
 		isLongPressSkip: true
@@ -30,7 +34,7 @@ $(document).ready(function() {
 		var textLines = plainText.split("\n");
 		console.dir(plainText);
 		console.dir(textLines);
-		typedObj = new Typed('#app', {
+		typedObj = new Typed(typingTextContainerID, {
 			strings: textLines,
 			typeSpeed: 100,
 			backSpeed: 10,
@@ -46,7 +50,7 @@ $(document).ready(function() {
 	
 	function typeNewLine(text){
 		typingText = text;
-		typedObj = new Typed('#app', {
+		typedObj = new Typed(typingTextContainerID, {
 			strings: [text + "^1000"], // hold 1 second(s)
 			typeSpeed: 100,
 			backSpeed: 10,
@@ -119,19 +123,49 @@ $(document).ready(function() {
 		$(jqDomObj).find("span").text(config.isLongPressSkip)
 	}
 	
-	// detect click
-	$("#container").click(function(){
-	});
+	// Decimals are not rounded consistently in all browsers. The best post I could find is here: Browser Rounding
+	// https://stackoverflow.com/questions/27947728/is-decimal-precision-when-specifying-a-font-size-respected-by-all-browsers
+	// http://cruft.io/posts/percentage-calculations-in-ie/
+	function adjustSize(adjust){
+		var currentSize = config.fontSizeEm;
+		var futureSize = 0.0;
+				
+		if(adjust >= 0){
+			if(currentSize == 3) // max 3em
+				return;
+			futureSize = currentSize + (adjust/100.0)
+		}else{
+			if(currentSize == 0.5) // max 0.5em
+				return;
+			futureSize = currentSize - ((adjust*-1)/100.0)
+		}
+		
+		// round to 2 decimal places
+		futureSize = Math.round(futureSize * 100) / 100
+		typingTextContainer.css("fontSize", futureSize+"em");
+		config.fontSizeEm = futureSize;
+		
+		var sizeInPercentage = futureSize*100;
+		sizeInPercentage = Math.round(sizeInPercentage * 100) / 100
+		
+		$("#fontsize").text(sizeInPercentage + "%");
+	}
 	
-    jQuery( "#container" ).on( 'mousedown', function( e ) {
+	adjustSize(0);
+	
+	// detect click
+	//$("#container").click(function(){
+	//});
+	
+    jQuery( "#clickableArea" ).on( 'mousedown', function( e ) {
         clickedTime = new Date().getTime();
     } );
 
-    jQuery( "#container" ).on( 'mouseleave', function( e ) {
+    jQuery( "#clickableArea" ).on( 'mouseleave', function( e ) {
         clickedTime = 0;
     } );
 
-    jQuery( "#container" ).on( 'mouseup', function( e ) {
+    jQuery( "#clickableArea" ).on( 'mouseup', function( e ) {
 		if(config.isLongPressSkip)
 			if(isTypingString)
 				if ( new Date().getTime() >= ( clickedTime + config.longpress )  ) {
@@ -140,9 +174,9 @@ $(document).ready(function() {
 					typedObj.stop();
 					typedObj.destroy();
 					
-					$("#app").text(typingText);
+					typingTextContainer.text(typingText);
 					isTypingString = false;
-					$("#app").append('<span class="typed-cursor typed-cursor--blink">_</span>');
+					typingTextContainer.append('<span class="typed-cursor typed-cursor--blink">_</span>');
 					
 					/*
 					typedObj.destroy();
@@ -204,5 +238,14 @@ $(document).ready(function() {
 	$("#pause").click(function(){
 		typedObj.stop();
 	});
+	
+	$("#increaseSize").click(function(){
+		adjustSize(10);
+	});
+	$("#decreaseSize").click(function(){
+		adjustSize(-10);
+	});
+	
+	
 
 })
