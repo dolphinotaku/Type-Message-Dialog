@@ -7,7 +7,7 @@ simple and quick solution to present the caption/subtitle for recording a presen
 ## Motivation
 Sometime I need to present the PowerPoint slides and demonstrate the applications. Typing the speech on a text editor is a quick and simple method if I don't want to speak. To be honest, English is not my native language, therefore, I will prepare the speech in hard copy, then follow and type it on the show. It was very complicated, low efficiency, easy to having typo and easy to overlook.
 
-I start from [gitgist](https://gist.github.com/keithbox/512470d8ee23275e7f5146cdb2ffe66b) to solve this situation, what is challenging to me may be a breeze for you.
+I start from [gitgist](https://gist.github.com/keithbox/512470d8ee23275e7f5146cdb2ffe66b) to solve this situation, for sure this may be a breeze for you.
 
 ## Investigation
 I experienced several similar tools: 
