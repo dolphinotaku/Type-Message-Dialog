@@ -5,23 +5,29 @@ $(document).ready(function() {
 	var typingText = null;
 	var typedObj = null;
 	
+	var config = {
+		speechFile: "evaluation speech.txt",
+		fontSizeEm: 1.9, // em unit
+		fontFamily: "sans-serif",
+		longpress: 100, // how many milliseconds is a long press?
+		isBulk: true, // true: typing in the unit of vocabulary, false: typing in the unit of character
+		isLongPressSkip: true // true: display the full sentence when long press during the typing, false: disable
+	}
+	
+	var clicableAreaID = "#clickableArea";
 	var typingTextContainerID = "#app"; // for jQuery(...)
+	var clicableAreaContainer = $(clicableAreaID);
 	var typingTextContainer = $(typingTextContainerID);
+	
+	typingTextContainer.css("fontFamily", config.fontFamily);
 		
 	var isTypingString = false;
 	
     // holds the start time
     var clickedTime;
 	
-	var config = {
-		fontSizeEm: 1, // em unit
-		longpress: 100, // how many milliseconds is a long press?
-		isBulk: false,
-		isLongPressSkip: true
-	}
-
 	$.ajax({
-		url: 'caption.txt',
+		url: config.speechFile,
 		context: document.body,
 		cache: false,
 		dataType: "text"
@@ -142,7 +148,7 @@ $(document).ready(function() {
 		
 		// round to 2 decimal places
 		futureSize = Math.round(futureSize * 100) / 100
-		typingTextContainer.css("fontSize", futureSize+"em");
+		clicableAreaContainer.css("fontSize", futureSize+"em");
 		config.fontSizeEm = futureSize;
 		
 		var sizeInPercentage = futureSize*100;
@@ -174,7 +180,14 @@ $(document).ready(function() {
 					typedObj.stop();
 					typedObj.destroy();
 					
-					typingTextContainer.text(typingText);
+					// remove ` in fullText if bulk enabled
+					var fullText = typingText;
+					if(config.isBulk){
+						fullText = fullText.replace(/` `/g, " ");
+						fullText = fullText.replace(/`/g, "");
+					}
+					
+					typingTextContainer.text(fullText);
 					isTypingString = false;
 					typingTextContainer.append('<span class="typed-cursor typed-cursor--blink">_</span>');
 					

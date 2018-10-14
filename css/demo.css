@@ -30,7 +30,7 @@
 
 
 #container {
-	text-align: center;
+	/* text-align: center; */
 	padding: 10px;
 	border-color: #9E9E9E;
 	height: 100px;
@@ -50,4 +50,6 @@
 
 #clickableArea {
 	flex-grow: 7;
+	padding-left: 150px;
+    padding-right: 150px;
 }
