@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var typedObj = null;
 	
 	var config = {
-		speechFile: "evaluation speech.txt",
+		speechFile: "caption.txt",
 		fontSizeEm: 1.9, // em unit
 		fontFamily: "sans-serif",
 		longpress: 100, // how many milliseconds is a long press?
